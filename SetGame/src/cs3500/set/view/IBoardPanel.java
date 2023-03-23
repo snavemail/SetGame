@@ -1,0 +1,1 @@
+package cs3500.set.view;import cs3500.set.controller.FeaturesInterface;/** * Represents behaviors for a GUI view for the game of Set. */public interface IBoardPanel {  /**   * Refresh the screen. This is called when the something on the   * screen is updated, and therefore it must be redrawn.   */  void addFeatures(FeaturesInterface features);}

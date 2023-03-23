@@ -15,6 +15,24 @@ public final class Coord {
     this.col = col;
   }
 
+  /**
+   * Returns the row of this coordinate.
+   *
+   * @return the row of this coordinate
+   */
+  public int getRow() {
+    return row;
+  }
+
+  /**
+   * Returns the column of this coordinate.
+   *
+   * @return the column of this coordinate
+   */
+  public int getCol() {
+    return col;
+  }
+
   @Override
   public String toString() {
     return String.format("(r%d,c%d)", row, col);

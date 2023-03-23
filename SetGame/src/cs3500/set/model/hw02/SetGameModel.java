@@ -15,6 +15,8 @@ import java.util.List;
  */
 public interface SetGameModel<C> extends SetGameModelState<C> {
 
+
+
   /**
    * If the cards at the specified coordinates form a valid set, claim it,
    * and replace those cards with new cards from the deck, if possible.

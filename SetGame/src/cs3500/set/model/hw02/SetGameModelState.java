@@ -6,11 +6,49 @@ import java.util.List;
  * Interface for the state of running game of Set.
  * This interface allows observation of the game's current grid, cards,
  * and deck, but not the mutation of these elements.
+ *
  * @param <C> The card type used for the current game
  */
 public interface SetGameModelState<C> {
+
+  /**
+   * Adds cards to the list of cards to claim.
+   *
+   * @param coord the coord to be added to the list of cards to claim
+   */
+  void addToClaimsList(Coord coord);
+
+  /**
+   * Determines if there are enough cards to claim.
+   *
+   * @return true if there are 3 cards to claim, false otherwise
+   */
+  boolean enoughCardsToClaim();
+
+  /**
+   * Removes all cards from the cards to claim list.
+   */
+  void removeCardsToClaim();
+
+  /**
+   * Gets the card at the specified index in the deck.
+   *
+   * @param index index to get card at
+   * @param deck  deck to get card from
+   * @return the card at the specified index
+   */
+  Coord getCoord(int index, List<Coord> deck);
+
+  /**
+   * Get Claims List.
+   *
+   * @return the list of coords to claim
+   */
+  List<Coord> getClaimsList();
+
   /**
    * Return the width of the grid for this game of Set.
+   *
    * @return the width of the grid
    * @throws IllegalStateException if the game has not yet started
    */
@@ -18,6 +56,7 @@ public interface SetGameModelState<C> {
 
   /**
    * Return the height of the grid for this game of Set.
+   *
    * @return the height of the grid
    * @throws IllegalStateException if the game has not yet started
    */
@@ -25,6 +64,7 @@ public interface SetGameModelState<C> {
 
   /**
    * Returns how many sets the player has collected so far.
+   *
    * @return the player's current score
    * @throws IllegalStateException if the game has not yet started
    */
@@ -32,6 +72,7 @@ public interface SetGameModelState<C> {
 
   /**
    * Returns true if and only if there are any sets in the currently dealt board.
+   *
    * @return if there are any sets available
    * @throws IllegalStateException if the game has not yet started
    */
@@ -39,17 +80,19 @@ public interface SetGameModelState<C> {
 
   /**
    * Returns true if cards at the specified coordinates form a valid set.
+   *
    * @param coord1 the coordinates of the first card
    * @param coord2 the coordinates of the second card
    * @param coord3 the coordinates of the third card
    * @return whether the cards form a valid set
    * @throws IllegalArgumentException if any of the coordinates are invalid for the given
-   *     implementation of Set
+   *                                  implementation of Set
    */
   boolean isValidSet(Coord coord1, Coord coord2, Coord coord3) throws IllegalArgumentException;
 
   /**
    * Returns the card at the specified row and column coordinates.
+   *
    * @param row the row of the desired card
    * @param col the column of the desired card
    * @return the card at the specified coordinates
@@ -59,6 +102,7 @@ public interface SetGameModelState<C> {
 
   /**
    * Returns the card at the specified coordinates.
+   *
    * @param coord the coordinates of the desired card
    * @return the card at the specified coordinates
    * @throws IllegalStateException if the game has not yet started
@@ -71,6 +115,7 @@ public interface SetGameModelState<C> {
    *   <li>there no sets on the current board OR</li>
    *   <li>there are not enough cards remaining in the deck to deal after claiming a set</li>
    * </ul>
+   *
    * @return whether the game is over
    */
   boolean isGameOver();
@@ -80,6 +125,7 @@ public interface SetGameModelState<C> {
    * This deck must contain every possible card possible in the implemented game
    * exactly once.
    * There is no required/sorted order for the cards in this deck.
+   *
    * @return the complete deck of cards
    */
   List<C> getCompleteDeck();
